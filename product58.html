@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดไอดี 1 - Xeon Shop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Kanit:wght@300;400;600;700&display=swap');
+
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff00e5;
+            --neon-lime: #39ff14;
+            --neon-yellow: #ffee00;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(17, 17, 34, 0.85);
+            --text-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            font-family: 'Kanit', sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 30px 20px;
+            overflow-x: hidden;
+        }
+
+        /* ── Animated Grid Background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridDrift 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes gridDrift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* ── Container หลัก ── */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* ── ปุ่มย้อนกลับ ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        .back-btn:hover {
+            color: #fff;
+            transform: translateX(-5px);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* ── การ์ดหลัก ── */
+        .paper {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 240, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .paper:hover {
+            border-color: rgba(0, 240, 255, 0.6);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25), inset 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        /* แถบเส้นแสง RGB ด้านบนการ์ด */
+        .paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-lime));
+            background-size: 200% 100%;
+            animation: rgbShift 3s linear infinite;
+        }
+        @keyframes rgbShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* ── โครงสร้างโซนบน (รูปอยู่ซ้าย / คำอธิบายอยู่ขวา) ── */
+        .content-body {
+            display: flex;
+            align-items: flex-start;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        /* ── ฝั่งซ้าย: รูปภาพ + กล่องข้อมูลเพิ่มเติมเติมเต็มพื้นที่ ── */
+        .image-section {
+            flex: 0 0 320px; /* ล็อกความกว้างฝั่งซ้าย */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .img-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .paper:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* ── กล่องราคาใต้รูป ── */
+        .price-badge {
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .price-badge .price-title {
+            font-size: 0.85rem;
+            color: #a0a0b0;
+            letter-spacing: 1px;
+        }
+
+        .price-badge .price-amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-lime);
+            text-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
+        }
+
+        /* ── กล่องการันตีความปลอดภัยใต้รูป ── */
+        .guarantee-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d0d0e0;
+        }
+
+        .guarantee-item span.icon {
+            font-size: 1.1rem;
+        }
+
+        /* ── ฝั่งขวา: รายละเอียดข้อความ ── */
+        .info-section {
+            flex: 1; /* ใช้พื้นที่ฝั่งขวาที่เหลือ */
+            min-width: 0;
+        }
+
+        .info-section h1 {
+            font-family: 'Orbitron', 'Kanit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            border-left: 4px solid var(--neon-cyan);
+            padding-left: 12px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-item {
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            word-break: break-word;
+        }
+
+        .info-item span.label {
+            color: #a0a0b0;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .info-item span.val {
+            color: var(--neon-cyan);
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            text-align: right;
+        }
+
+        /* รายละเอียดตัวละคร + Game Pass */
+        .info-item.full-detail {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-item.full-detail span.val {
+            text-align: left;
+            font-family: 'Kanit', sans-serif;
+            color: #e0e0e0;
+            font-weight: 300;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* ── โซนล่าง: ปุ่มสั่งซื้อตรงกลาง ── */
+        .action-section {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+        }
+
+        .buy-link {
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #00f0ff, #00a2ff);
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #000;
+            font-family: 'Orbitron', 'Kanit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #39ff14, #00f0ff);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 35px rgba(57, 255, 20, 0.6);
+            color: #000;
+        }
+
+        /* ── Responsive บนโทรศัพท์มือถือ ── */
+        @media (max-width: 768px) {
+            .content-body {
+                flex-direction: column;
+                gap: 25px;
+            }
+            .image-section {
+                flex: 1 1 100%;
+                width: 100%;
+            }
+            .buy-link {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="index.html" class="back-btn">
+        &#8592; ย้อนกลับหน้าหลัก
+    </a>
+
+    <div class="paper">
+
+        <div class="content-body">
+
+            <div class="image-section">
+                <div class="img-wrapper">
+                    <img src="1000016315.png" alt="รูปภาพไอดี 1">
+                </div>
+
+                <div class="price-badge">
+                    <div class="price-title">ราคาเพียง</div>
+                    <div class="price-amount">255 ฿</div>
+                </div>
+
+                <div class="guarantee-box">
+                    <div class="guarantee-item">
+                        <span class="icon">⚡</span>
+                        <span>สถานะ: <strong>พร้อมจัดส่ง</strong></span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="icon">🛡️</span>
+                        <span>รับประกันไอดีสะดวดปลอดภัย 100%</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="icon">📩</span>
+                        <span>สั่งซื้อแล้วส่งสลิปผ่านทางเพจได้เลย</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h1>รายละเอียดไอดี</h1>
+
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="label">รหัสสินค้า :</span>
+                        <span class="val">#058</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">เลเวล :</span>
+                        <span class="val">1</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">เงินในเกม :</span>
+                        <span class="val">20</span>
+                    </div>
+
+                    <div class="info-item full-detail">
+                        <span class="label">🎮 รายละเอียดตัวละคร & Game Pass :</span>
+                        <span class="val">
+- Game Pass: 11 ชิ้น (ครบเซ็ต)
+- ตัวละคร: ไม่มี
+- รายละเอียดเพิ่มเติม: พิมพ์รายละเอียดไอดี ของในตัว อาวุธ เลเวล หรือไอเทมหายากต่างๆ ลงตรงนี้ได้ยาวๆ เลยครับ ฝั่งซ้ายจะมีทั้งรูป ป้ายราคา และกล่องการันตีช่วยรับพื้นที่ให้สมดุลกันสวยงาม!
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="action-section">
+            <a href="https://www.facebook.com/profile.php?id=61577582814625" target="_blank" class="buy-link">
+                <button>🛒 สั่งซื้อไอดีนี้</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
