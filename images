@@ -1,6 +1,5 @@
 
-D:\รูปเกม\PES 2.png
-.image-section {
+D:\รูปเกม\PES 2.png.image-section {
             flex: 0 0 320px;
             display: flex;
             flex-direction: column;
