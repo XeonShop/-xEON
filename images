@@ -1,14 +1,8 @@
 
 D:\รูปเกม\PES 2.png
-@media (max-width: 768px) {
-            .content-body {
-                flex-direction: column;
-                gap: 25px;
-            }
-            .image-section {
-                flex: 1 1 100%;
-                width: 100%;
-            }
-            .main-buy-btn {
-                max-width: 100%;
+.image-section {
+            flex: 0 0 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
 D:\รูปเกม\PES 3.png
