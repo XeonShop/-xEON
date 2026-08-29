@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Xeon Shop</title>
+
     <style>
-        @import url('htps://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Kanit:wght@300;400;600;700&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Kanit:wght@300;400;600;700&display=swap');
 
         html {
             scroll-behavior: smooth;
@@ -16,7 +19,8 @@
             --neon-magenta: #ff00e5;
             --neon-lime: #39ff14;
             --neon-yellow: #ffee00;
-            --card-bg: rgba(17, 17, 34, 0.85); /* ปรับให้กระจกใสนิดๆ มองเห็นรูปหลัง */
+
+            --card-bg: rgba(17, 17, 34, 0.85);
             --text: #e0e0e0;
         }
 
@@ -26,1341 +30,1799 @@
             box-sizing: border-box;
         }
 
-        /* ── [จุดที่ 1: ปรับเปลี่ยนรูปพื้นหลังตรงนี้] ── */
+
+        /* ═══════════════════════════════════════
+           พื้นหลังร้าน
+        ═══════════════════════════════════════ */
+
         body {
-            /* ใส่รูปภาพเป็นพื้นหลัง จัดให้อยู่กึ่งกลาง ไม่ซ้ำ และตรึงไว้กับหน้าจอ */
-            background-image: url ; 1000011018%20(1).png
+
+            background-image: url("1000011018.png");
+
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-color: #000000; /* สีสำรองกรณีรูปยังโหลดไม่เสร็จ */
-            
+
+            background-color: #000;
+
             font-family: 'Kanit', sans-serif;
+
             color: var(--text);
+
             min-height: 100vh;
+
             overflow-x: hidden;
+
             position: relative;
         }
 
-        /* ── [จุดที่ 2: ฟิล์มมืดซ้อนหลัง (Overlay) ช่วยให้ตัวอักษรอ่านง่ายขึ้นมาก] ── */
+
+        /* ฟิล์มดำ */
         body::after {
-            content: '';
+
+            content: "";
+
             position: fixed;
+
             inset: 0;
-            background: rgba(0, 0, 0, 0.75); /* ปรับความเข้มได้ (0.75 คือกำลังดี) */
+
+            background: rgba(0, 0, 0, 0.75);
+
             pointer-events: none;
+
             z-index: 0;
         }
 
-        /* ── Animated Grid Background ซ้อนทับบางๆ เพิ่มมิติ Cyberpunk ── */
+
+        /* Grid */
         body::before {
-            content: '';
+
+            content: "";
+
             position: fixed;
+
             inset: 0;
+
             background:
-                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(180deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(
+                    90deg,
+                    rgba(0, 240, 255, 0.05) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    180deg,
+                    rgba(0, 240, 255, 0.05) 1px,
+                    transparent 1px
+                );
+
             background-size: 60px 60px;
+
             animation: gridDrift 20s linear infinite;
+
             pointer-events: none;
+
             z-index: 1;
         }
+
         @keyframes gridDrift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
+
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(60px, 60px);
+            }
+
         }
 
-        /* ── Top Navigation Bar ── */
+
+        /* ═══════════════════════════════════════
+           Navigation
+        ═══════════════════════════════════════ */
+
         .navbar {
+
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
+
             z-index: 1000;
+
             background: rgba(10, 10, 15, 0.85);
+
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-        }
-        .nav-brand {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
-            letter-spacing: 2px;
-        }
-        .nav-menu {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 4px;
-        }
-        .nav-link:hover {
-            color: var(--neon-yellow);
-            text-shadow: 0 0 8px rgba(255, 238, 0, 0.6);
-            background: rgba(255, 255, 255, 0.05);
+
+            border-bottom:
+                1px solid rgba(0, 240, 255, 0.2);
+
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* ── Main Container ── */
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1280px;
+        .nav-container {
+
+            max-width: 1400px;
+
             margin: 0 auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 15px 25px;
+        }
+
+        .nav-brand {
+
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 1.4rem;
+
+            font-weight: 900;
+
+            color: var(--neon-cyan);
+
+            text-decoration: none;
+
+            text-shadow:
+                0 0 10px rgba(0, 240, 255, 0.6);
+
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+
+            display: flex;
+
+            gap: 20px;
+
+            list-style: none;
+        }
+
+        .nav-link {
+
+            color: var(--text);
+
+            text-decoration: none;
+
+            font-size: 0.95rem;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+            cursor: pointer;
+
+            padding: 6px 12px;
+
+            border-radius: 4px;
+        }
+
+        .nav-link:hover {
+
+            color: var(--neon-yellow);
+
+            text-shadow:
+                0 0 8px rgba(255, 238, 0, 0.6);
+
+            background:
+                rgba(255, 255, 255, 0.05);
+        }
+
+
+        /* ═══════════════════════════════════════
+           Container
+        ═══════════════════════════════════════ */
+
+        .container {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1280px;
+
+            margin: 0 auto;
+
             padding: 0 20px 60px;
         }
 
-        /* ── Side Vertical Ads ── */
+
+        /* ═══════════════════════════════════════
+           โฆษณาด้านข้าง
+        ═══════════════════════════════════════ */
+
         .side-ad {
+
             position: fixed;
+
             top: 120px;
+
             width: 110px;
+
             height: 380px;
+
             background: var(--card-bg);
+
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 240, 255, 0.3);
+
+            border:
+                1px solid rgba(0, 240, 255, 0.3);
+
             border-radius: 8px;
+
             overflow: hidden;
+
             z-index: 900;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 240, 255, 0.15);
+
+            box-shadow:
+                0 0 15px rgba(0, 0, 0, 0.8),
+                0 0 10px rgba(0, 240, 255, 0.15);
+
             display: flex;
+
             flex-direction: column;
         }
-        .side-ad-left { left: 10px; }
-        .side-ad-right { right: 10px; }
+
+        .side-ad-left {
+            left: 10px;
+        }
+
+        .side-ad-right {
+            right: 10px;
+        }
 
         .ad-header {
-            background: linear-gradient(90deg, var(--neon-magenta), var(--neon-cyan));
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--neon-magenta),
+                    var(--neon-cyan)
+                );
+
             color: #000;
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 0.65rem;
+
             font-weight: 900;
+
             text-align: center;
+
             padding: 4px 0;
+
             letter-spacing: 1px;
         }
+
         .ad-slider {
+
             position: relative;
+
             flex: 1;
+
             width: 100%;
+
             height: 100%;
         }
+
         .ad-slide {
+
             position: absolute;
+
             inset: 0;
+
             opacity: 0;
+
             transition: opacity 1s ease-in-out;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             justify-content: flex-start;
+
             text-decoration: none;
+
             padding: 8px 5px;
+
             text-align: center;
         }
-        .ad-slide.active { opacity: 1; }
-        .ad-slide img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            border: 1px solid rgba(255,255,255,0.1);
+
+        .ad-slide.active {
+            opacity: 1;
         }
-        .ad-slide .ad-title {
+
+        .ad-slide img {
+
+            width: 100%;
+
+            height: 240px;
+
+            object-fit: cover;
+
+            border-radius: 6px;
+
+            margin-bottom: 6px;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+        }
+
+        .ad-title {
+
             color: var(--neon-yellow);
+
             font-size: 0.75rem;
+
             font-weight: 700;
+
             line-height: 1.2;
+
             margin-bottom: 2px;
         }
-        .ad-slide .ad-desc {
+
+        .ad-desc {
+
             color: #aaa;
+
             font-size: 0.65rem;
         }
 
         @media (max-width: 1500px) {
-            .side-ad { display: none; }
+
+            .side-ad {
+                display: none;
+            }
+
         }
 
-        /* ── Hero Section (100vh) ── */
+
+        /* ═══════════════════════════════════════
+           Hero
+        ═══════════════════════════════════════ */
+
         .hero-section {
+
             min-height: 100vh;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
+
             text-align: center;
+
             padding-top: 60px;
         }
 
         .header-logo {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: clamp(3rem, 8vw, 6rem);
+
             font-weight: 900;
+
             letter-spacing: 6px;
-            background: linear-gradient(90deg,
-                #ff0000, #ff8800, #ffff00, #00ff00,
-                #00f0ff, #8800ff, #ff00e5, #ff0000
-            );
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff0000,
+                    #ff8800,
+                    #ffff00,
+                    #00ff00,
+                    #00f0ff,
+                    #8800ff,
+                    #ff00e5,
+                    #ff0000
+                );
+
             background-size: 300% 100%;
+
             -webkit-background-clip: text;
+
             background-clip: text;
+
             -webkit-text-fill-color: transparent;
-            animation: rgbShift 4s linear infinite;
-            filter: drop-shadow(0 0 35px rgba(0, 240, 255, 0.6));
+
+            animation:
+                rgbShift 4s linear infinite;
+
+            filter:
+                drop-shadow(
+                    0 0 35px
+                    rgba(0, 240, 255, 0.6)
+                );
         }
+
         @keyframes rgbShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 300% 50%;
+            }
+
         }
 
         .header-sub {
+
             font-size: 1.3rem;
+
             font-weight: 300;
+
             letter-spacing: 4px;
+
             color: var(--neon-cyan);
+
             margin-top: 10px;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+
+            text-shadow:
+                0 0 15px
+                rgba(0, 240, 255, 0.6);
         }
 
         .rgb-divider {
+
             width: 80%;
+
             max-width: 600px;
+
             height: 2px;
+
             margin: 35px auto;
-            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00f0ff, #ff00e5);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff0000,
+                    #ffff00,
+                    #00ff00,
+                    #00f0ff,
+                    #ff00e5
+                );
+
             background-size: 200% 100%;
-            animation: rgbShift 3s linear infinite;
+
+            animation:
+                rgbShift 3s linear infinite;
+
             border-radius: 2px;
         }
 
         .cta-btn {
+
             display: inline-block;
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 1.2rem;
+
             font-weight: 900;
+
             letter-spacing: 3px;
+
             text-decoration: none;
+
             color: #000;
+
             padding: 18px 55px;
+
             border-radius: 6px;
-            position: relative;
-            background: var(--neon-yellow);
-            z-index: 1;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(255, 238, 0, 0.6);
+
+            background:
+                var(--neon-yellow);
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 0 30px
+                rgba(255, 238, 0, 0.6);
+
             cursor: pointer;
         }
+
         .cta-btn:hover {
-            color: #000;
+
             background: #fff200;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 10px 50px rgba(255, 238, 0, 0.9);
+
+            transform:
+                translateY(-4px)
+                scale(1.05);
+
+            box-shadow:
+                0 10px 50px
+                rgba(255, 238, 0, 0.9);
         }
 
         .scroll-down-icon {
+
             margin-top: 40px;
+
             color: var(--neon-cyan);
+
             font-size: 1.5rem;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+            animation:
+                bounce 2s infinite;
         }
 
-        /* ── Product Section & Grid ── */
+        @keyframes bounce {
+
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+
+        }
+
+
+        /* ═══════════════════════════════════════
+           Products
+        ═══════════════════════════════════════ */
+
         .products-section {
+
             padding-top: 40px;
+
             scroll-margin-top: 80px;
         }
+
         .section-title {
+
             font-family: 'Orbitron', sans-serif;
+
             font-size: 1.8rem;
+
             color: #fff;
+
             text-align: center;
+
             margin-bottom: 30px;
+
             letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--neon-cyan);
+
+            text-shadow:
+                0 0 10px var(--neon-cyan);
         }
 
         .product-grid {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+
             gap: 25px;
         }
 
-        /* ── Product Card (กระจกใสฝ้า เข้ากับรูปหลัง) ── */
+
+        /* ═══════════════════════════════════════
+           Product Card
+        ═══════════════════════════════════════ */
+
         .product-card {
+
             background: var(--card-bg);
+
             backdrop-filter: blur(12px);
+
             border-radius: 16px;
+
             padding: 20px;
+
             position: relative;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0, 240, 255, 0.2);
+
+            transition: 0.4s;
+
+            border:
+                1px solid
+                rgba(0, 240, 255, 0.2);
+
             overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+            box-shadow:
+                0 8px 32px
+                rgba(0, 0, 0, 0.37);
         }
+
         .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+
+            transform:
+                translateY(-8px);
+
+            border-color:
+                var(--neon-cyan);
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 240, 255, 0.3);
         }
+
+
+        /* ═══════════════════════════════════════
+           รูปสินค้า
+        ═══════════════════════════════════════ */
 
         .card-img-wrap {
+
             position: relative;
+
             border-radius: 10px;
+
             overflow: hidden;
+
             margin-bottom: 18px;
+
             aspect-ratio: 4 / 3;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
+
+            background: #000;
         }
 
+
+        /* โลโก้ร้านจางๆ บนรูป */
+
+        .card-img-wrap::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                url("1000011018.png");
+
+            background-repeat: no-repeat;
+
+            background-position: center;
+
+            background-size: 60%;
+
+            opacity: 0.12;
+
+            z-index: 3;
+
+            pointer-events: none;
+        }
+
+
+        /* รูปตัวละคร */
+
+        .card-img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            position: relative;
+
+            z-index: 2;
+
+            transition: 0.4s;
+        }
+
+        .card-img-wrap:hover .card-img {
+
+            transform:
+                scale(1.04);
+        }
+
+
+        /* ═══════════════════════════════════════
+           ปุ่มซูม
+        ═══════════════════════════════════════ */
+
+        .zoom-btn {
+
+            position: absolute;
+
+            top: 10px;
+
+            right: 10px;
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                var(--neon-cyan);
+
+            background:
+                rgba(0, 0, 0, 0.75);
+
+            color:
+                var(--neon-cyan);
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 10;
+
+            box-shadow:
+                0 0 15px
+                rgba(0, 240, 255, 0.6);
+
+            transition: 0.3s;
+        }
+
+        .zoom-btn:hover {
+
+            background:
+                var(--neon-cyan);
+
+            color: #000;
+
+            transform:
+                scale(1.15);
+
+            box-shadow:
+                0 0 25px
+                var(--neon-cyan);
+        }
+
+
+        /* ═══════════════════════════════════════
+           ข้อมูลสินค้า
+        ═══════════════════════════════════════ */
+
         .card-code {
-            font-family: 'Orbitron', sans-serif;
+
+            font-family:
+                'Orbitron', sans-serif;
+
             font-size: 0.9rem;
+
             font-weight: 700;
-            color: var(--neon-cyan);
+
+            color:
+                var(--neon-cyan);
+
             margin-bottom: 6px;
         }
+
         .card-price {
+
             font-size: 1.8rem;
+
             font-weight: 700;
+
             color: #fff;
+
             margin-bottom: 16px;
         }
-        .card-price .currency {
+
+        .currency {
+
             font-size: 0.9rem;
-            color: var(--neon-lime);
+
+            color:
+                var(--neon-lime);
         }
 
         .card-btn {
+
             display: inline-block;
+
             width: 100%;
+
             text-align: center;
-            font-family: 'Orbitron', sans-serif;
+
+            font-family:
+                'Orbitron', sans-serif;
+
             font-size: 0.85rem;
+
             font-weight: 700;
+
             text-decoration: none;
-            color: var(--neon-cyan);
+
+            color:
+                var(--neon-cyan);
+
             padding: 12px 0;
-            border: 1px solid var(--neon-cyan);
+
+            border:
+                1px solid
+                var(--neon-cyan);
+
             border-radius: 6px;
-            transition: all 0.3s ease;
-            background: rgba(0, 240, 255, 0.05);
-        }
-        .card-btn:hover {
-            color: #000;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
+
+            transition: 0.3s;
+
+            background:
+                rgba(0, 240, 255, 0.05);
         }
 
-        /* ── Modal Pop-up ── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        .card-btn:hover {
+
+            color: #000;
+
+            background:
+                var(--neon-cyan);
+
+            box-shadow:
+                0 0 15px
+                var(--neon-cyan);
         }
+
+
+        /* ═══════════════════════════════════════
+           Modal เดิม
+        ═══════════════════════════════════════ */
+
+        .modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.85);
+
+            backdrop-filter:
+                blur(8px);
+
+            z-index: 10000;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
         .modal-overlay.active {
+
             opacity: 1;
+
             pointer-events: auto;
         }
+
         .modal-box {
-            background: var(--card-bg);
-            border: 1px solid var(--neon-cyan);
+
+            background:
+                var(--card-bg);
+
+            border:
+                1px solid
+                var(--neon-cyan);
+
             border-radius: 12px;
+
             width: 90%;
+
             max-width: 500px;
+
             padding: 25px;
+
             position: relative;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 240, 255, 0.2);
         }
+
         .modal-title {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
+
+            font-family:
+                'Orbitron', sans-serif;
+
+            color:
+                var(--neon-cyan);
+
             font-size: 1.4rem;
+
             margin-bottom: 15px;
+
             text-align: center;
         }
+
         .close-btn {
+
             position: absolute;
+
             top: 15px;
+
             right: 15px;
+
             background: none;
+
             border: none;
+
             color: #aaa;
+
             font-size: 1.2rem;
+
             cursor: pointer;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 30px 0 10px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+
+        /* ═══════════════════════════════════════
+           หน้าต่างซูมรูป
+        ═══════════════════════════════════════ */
+
+        .image-zoom-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.94);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+            z-index: 99999;
+
+            padding: 30px;
         }
+
+        .image-zoom-modal.active {
+
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+        .image-zoom-content {
+
+            position: relative;
+
+            max-width: 95vw;
+
+            max-height: 90vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .image-zoom-content img {
+
+            max-width: 90vw;
+
+            max-height: 85vh;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+
+            border:
+                2px solid
+                var(--neon-cyan);
+
+            box-shadow:
+                0 0 20px
+                var(--neon-cyan),
+
+                0 0 60px
+                rgba(255, 0, 229, 0.4);
+        }
+
+        .image-zoom-close {
+
+            position: absolute;
+
+            top: -20px;
+
+            right: -20px;
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                var(--neon-magenta);
+
+            background: #000;
+
+            color:
+                var(--neon-magenta);
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            box-shadow:
+                0 0 15px
+                var(--neon-magenta);
+        }
+
+        .image-zoom-close:hover {
+
+            background:
+                var(--neon-magenta);
+
+            color: #000;
+        }
+
+
+        /* ═══════════════════════════════════════
+           Footer
+        ═══════════════════════════════════════ */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 80px;
+
+            padding: 30px 0 10px;
+
+            font-size: 0.8rem;
+
+            color:
+                rgba(255, 255, 255, 0.4);
+        }
+
+
+        /* ═══════════════════════════════════════
+           มือถือ
+        ═══════════════════════════════════════ */
+
+        @media (max-width: 700px) {
+
+            .nav-menu {
+                gap: 5px;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 5px;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 12px;
+            }
+
+            .product-card {
+                padding: 12px;
+            }
+
+            .card-price {
+                font-size: 1.3rem;
+            }
+
+            .zoom-btn {
+
+                width: 38px;
+
+                height: 38px;
+
+                font-size: 17px;
+            }
+
+        }
+
     </style>
 </head>
+
+
 <body>
 
+
+    <!-- ═══════════════════════════════════════
+         NAVBAR
+    ═══════════════════════════════════════ -->
+
     <nav class="navbar">
+
         <div class="nav-container">
-            <a href="#" class="nav-brand">XEON SHOP</a>
+
+            <a href="#" class="nav-brand">
+                XEON SHOP
+            </a>
+
             <ul class="nav-menu">
-                <li><a class="nav-link" onclick="toggleModal('how-to-buy')">วิธีซื้อขาย</a></li>
-                <li><a class="nav-link" onclick="toggleModal('promo-info')">โปรโมท / โฆษณา</a></li>
-                <li><a href="#products" class="nav-link">รายการสินค้า</a></li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        onclick="toggleModal('how-to-buy')">
+                        วิธีซื้อขาย
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        onclick="toggleModal('promo-info')">
+                        โปรโมท / โฆษณา
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#products"
+                        class="nav-link">
+                        รายการสินค้า
+                    </a>
+                </li>
+
             </ul>
+
         </div>
+
     </nav>
 
+
+    <!-- ═══════════════════════════════════════
+         โฆษณาซ้าย
+    ═══════════════════════════════════════ -->
+
     <aside class="side-ad side-ad-left">
-        <div class="ad-header">PROMOTION</div>
-        <div class="ad-slider" id="left-ad-slider">
-            <a href="https://youtube.com" target="_blank" class="ad-slide active">
-                <img src="https://via.placeholder.com/100x240/ff00e5/ffffff?text=YOUTUBE" alt="Ad 1">
-                <div class="ad-title">กดติดตามช่อง</div>
-                <div class="ad-desc">คลิปใหม่ทุกวัน</div>
-            </a>
-            <a href="#products" class="ad-slide">
-                <img src="https://via.placeholder.com/100x240/00f0ff/000000?text=DISCOUNT" alt="Ad 2">
-                <div class="ad-title">ไอดีราคาพิเศษ</div>
-                <div class="ad-desc">ลดสูงสุด 50%</div>
-            </a>
+
+        <div class="ad-header">
+            PROMOTION
         </div>
+
+        <div
+            class="ad-slider"
+            id="left-ad-slider">
+
+            <a
+                href="https://youtube.com"
+                target="_blank"
+                class="ad-slide active">
+
+                <img
+                    src="https://via.placeholder.com/100x240/ff00e5/ffffff?text=YOUTUBE"
+                    alt="Ad 1">
+
+                <div class="ad-title">
+                    กดติดตามช่อง
+                </div>
+
+                <div class="ad-desc">
+                    คลิปใหม่ทุกวัน
+                </div>
+
+            </a>
+
+
+            <a
+                href="#products"
+                class="ad-slide">
+
+                <img
+                    src="https://via.placeholder.com/100x240/00f0ff/000000?text=DISCOUNT"
+                    alt="Ad 2">
+
+                <div class="ad-title">
+                    ไอดีราคาพิเศษ
+                </div>
+
+                <div class="ad-desc">
+                    ลดสูงสุด 50%
+                </div>
+
+            </a>
+
+        </div>
+
     </aside>
 
+
+    <!-- ═══════════════════════════════════════
+         โฆษณาขวา
+    ═══════════════════════════════════════ -->
+
     <aside class="side-ad side-ad-right">
-        <div class="ad-header">SPONSOR</div>
-        <div class="ad-slider" id="right-ad-slider">
-            <a href="https://youtube.com" target="_blank" class="ad-slide active">
-                <img src="https://via.placeholder.com/100x240/ffee00/000000?text=STREAM" alt="Ad 3">
-                <div class="ad-title">สตรีมสดทุกวัน</div>
-                <div class="ad-desc">เวลา 19.00 น.</div>
-            </a>
-            <a href="#" class="ad-slide">
-                <img src="https://via.placeholder.com/100x240/39ff14/000000?text=DISCORD" alt="Ad 4">
-                <div class="ad-title">เข้า Discord</div>
-                <div class="ad-desc">ร่วมกิจกรรม</div>
-            </a>
+
+        <div class="ad-header">
+            SPONSOR
         </div>
+
+        <div
+            class="ad-slider"
+            id="right-ad-slider">
+
+            <a
+                href="https://youtube.com"
+                target="_blank"
+                class="ad-slide active">
+
+                <img
+                    src="https://via.placeholder.com/100x240/ffee00/000000?text=STREAM"
+                    alt="Ad 3">
+
+                <div class="ad-title">
+                    สตรีมสดทุกวัน
+                </div>
+
+                <div class="ad-desc">
+                    เวลา 19.00 น.
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="ad-slide">
+
+                <img
+                    src="https://via.placeholder.com/100x240/39ff14/000000?text=DISCORD"
+                    alt="Ad 4">
+
+                <div class="ad-title">
+                    เข้า Discord
+                </div>
+
+                <div class="ad-desc">
+                    ร่วมกิจกรรม
+                </div>
+
+            </a>
+
+        </div>
+
     </aside>
+
+
+
+    <!-- ═══════════════════════════════════════
+         MAIN
+    ═══════════════════════════════════════ -->
 
     <div class="container">
 
+
+        <!-- HERO -->
+
         <section class="hero-section">
-            <h1 class="header-logo">XEON SHOP</h1>
-            <p class="header-sub">เว็บไซต์ขายสินค้าออนไลน์</p>
-            
+
+            <h1 class="header-logo">
+                XEON SHOP
+            </h1>
+
+            <p class="header-sub">
+                เว็บไซต์ขายสินค้าออนไลน์
+            </p>
+
             <div class="rgb-divider"></div>
 
             <div class="cta-wrap">
-                <a href="#products" class="cta-btn">เริ่มต้นเลือกสินค้า</a>
+
+                <a
+                    href="#products"
+                    class="cta-btn">
+
+                    เริ่มต้นเลือกสินค้า
+
+                </a>
+
             </div>
 
-            <div class="scroll-down-icon">▼</div>
-        </section>
-
-        <section class="products-section" id="products">
-            <h2 class="section-title">— ALL PRODUCTS —</h2>
-            
-            <div class="product-grid">
-
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="PES 2.png" alt="สินค้ารหัสที่ 2" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 2</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product1.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                       <img src="PES 3.png" alt="สินค้ารหัสที่ 3" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 3</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product2.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images (1).jfif" alt="สินค้ารหัสที่ 3" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 3</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product3.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 4" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 4</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product4.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 5" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 5</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product5.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                    <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 6" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 6</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product6.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 7" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 7</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product7.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 8" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 8</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product8.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 9" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 9</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product9.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 10" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 10</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product10.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 11" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 11</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product11.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 12" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 12</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product12.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 13" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 13</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product13.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 14" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 14</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product14.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 15" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 15</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product15.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 16" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 16</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product16.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 17" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 17</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product17.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 18" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 18</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product18.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 19" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 19</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product19.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 20" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 20</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product20.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 21" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 21</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product21.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 22" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 22</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product22.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 23" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 23</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product23.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 24" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 24</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product24.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 25" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 25</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product25.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 26" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 26</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product26.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 27" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 27</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product27.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 28" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 28</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product28.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 29" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 29</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product29.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 30" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 30</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product30.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 31" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 31</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product31.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 32" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 32</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product32.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 33" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 33</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product33.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 34" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 34</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product34.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 35" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 35</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product35.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 36" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 36</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product36.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 37" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 37</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product37.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 38" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 38</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product38.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 39" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 39</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product39.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 40" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 40</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product40.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 41" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 41</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product41.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 42" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 42</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product42.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 43" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 43</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product43.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 44" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 44</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product44.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 45" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 45</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product45.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 46" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 46</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product46.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 47" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 47</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product47.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 48" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 48</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product48.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 49" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 49</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product49.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 50" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 50</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product50.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 51" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 51</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product51.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 52" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 52</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product52.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 53" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 53</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product53.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 54" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 54</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product54.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 55" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 55</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product55.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 56" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 56</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product56.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 57" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 57</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product57.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 58" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 58</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product58.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 59" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 59</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product59.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 60" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 60</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product60.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 61" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 61</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product61.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 62" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 62</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product62.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 63" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 63</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product63.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 64" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 64</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product64.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 65" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 65</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product65.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 66" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 66</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product66.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 67" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 67</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product67.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 68" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 68</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product68.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 69" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 69</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product69.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 70" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 70</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product70.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 71" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 71</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product71.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 72" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 72</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product72.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 73" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 73</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product73.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 74" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 74</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product74.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 75" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 75</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product75.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 76" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 76</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product76.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 77" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 77</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product77.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 78" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 78</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product78.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 79" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 79</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product79.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 80" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 80</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product80.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 81" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 81</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product81.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 82" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 82</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product82.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 83" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 83</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product83.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 84" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 84</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product84.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 85" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 85</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product85.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 86" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 86</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product86.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 87" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 87</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product87.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 88" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 88</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product88.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 89" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 89</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product89.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 90" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 90</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product90.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 91" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 91</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product91.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 92" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 92</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product92.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 93" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 93</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product93.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 94" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 94</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product94.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                <div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 95" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 95</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product95.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 96" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 96</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product96.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 97" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 97</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product97.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 98" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 98</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product98.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 99" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 99</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product99.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-<div class="product-card">
-                    <div class="card-img-wrap">
-                        <img src="images.jfif" alt="สินค้ารหัสที่ 100" class="card-img">
-                    </div>
-                    <div class="card-code">รหัสที่ 100</div>
-                    <div class="card-price">255 <span class="currency">บาท</span></div>
-                    <a href="product100.html" class="card-btn">ดูข้อมูลไอดี</a>
-                </div>
-                
-                    
+            <div class="scroll-down-icon">
+                ▼
             </div>
+
         </section>
+
+
+
+        <!-- ═══════════════════════════════════════
+             PRODUCTS
+        ═══════════════════════════════════════ -->
+
+        <section
+            class="products-section"
+            id="products">
+
+            <h2 class="section-title">
+                — ALL PRODUCTS —
+            </h2>
+
+
+            <div
+                class="product-grid"
+                id="productGrid">
+
+                <!-- JavaScript สร้างสินค้า 2-100 ตรงนี้ -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
 
         <footer class="footer">
-            <p>© 2026 XEON SHOP. ALL RIGHTS RESERVED.</p>
+
+            <p>
+                © 2026 XEON SHOP.
+                ALL RIGHTS RESERVED.
+            </p>
+
         </footer>
 
     </div>
 
-    <div class="modal-overlay" id="how-to-buy">
+
+
+    <!-- ═══════════════════════════════════════
+         MODAL วิธีซื้อ
+    ═══════════════════════════════════════ -->
+
+    <div
+        class="modal-overlay"
+        id="how-to-buy">
+
         <div class="modal-box">
-            <button class="close-btn" onclick="toggleModal('how-to-buy')">✕</button>
-            <h3 class="modal-title">วิธีสั่งซื้อสินค้า</h3>
-            <p style="text-align: center; color: #ccc;">เลือกรหัสสินค้า ชำระเงิน และรับของได้ทันที</p>
+
+            <button
+                class="close-btn"
+                onclick="toggleModal('how-to-buy')">
+
+                ✕
+
+            </button>
+
+            <h3 class="modal-title">
+                วิธีสั่งซื้อสินค้า
+            </h3>
+
+            <p
+                style="
+                text-align:center;
+                color:#ccc;
+                ">
+
+                เลือกรหัสสินค้า
+                ชำระเงิน
+                และรับของได้ทันที
+
+            </p>
+
         </div>
+
     </div>
 
-    <div class="modal-overlay" id="promo-info">
+
+
+    <!-- ═══════════════════════════════════════
+         MODAL ติดต่อ
+    ═══════════════════════════════════════ -->
+
+    <div
+        class="modal-overlay"
+        id="promo-info">
+
         <div class="modal-box">
-            <button class="close-btn" onclick="toggleModal('promo-info')">✕</button>
-            <h3 class="modal-title">ช่องทางโปรโมท & ติดต่อ</h3>
-            <div style="text-align: center;">
-                <a href="https://youtube.com" target="_blank" class="card-btn" style="display:inline-block; margin-bottom:10px; width:100%;">🔴 ติดตามช่อง YouTube</a>
-                <a href="#" target="_blank" class="card-btn" style="display:inline-block; width:100%; border-color:var(--neon-magenta); color:var(--neon-magenta);">💬 เข้าร่วม Discord Community</a>
+
+            <button
+                class="close-btn"
+                onclick="toggleModal('promo-info')">
+
+                ✕
+
+            </button>
+
+            <h3 class="modal-title">
+                ช่องทางโปรโมท & ติดต่อ
+            </h3>
+
+            <div
+                style="text-align:center;">
+
+                <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    class="card-btn"
+                    style="
+                    display:inline-block;
+                    margin-bottom:10px;
+                    width:100%;
+                    ">
+
+                    🔴 ติดตามช่อง YouTube
+
+                </a>
+
+
+                <a
+                    href="#"
+                    target="_blank"
+                    class="card-btn"
+                    style="
+                    display:inline-block;
+                    width:100%;
+                    border-color:var(--neon-magenta);
+                    color:var(--neon-magenta);
+                    ">
+
+                    💬 เข้าร่วม Discord Community
+
+                </a>
+
             </div>
+
         </div>
+
     </div>
+
+
+
+    <!-- ═══════════════════════════════════════
+         MODAL ซูมรูป
+    ═══════════════════════════════════════ -->
+
+    <div
+        class="image-zoom-modal"
+        id="imageZoomModal">
+
+        <div class="image-zoom-content">
+
+            <button
+                class="image-zoom-close"
+                onclick="closeImageZoom()">
+
+                ✕
+
+            </button>
+
+            <img
+                id="zoomImage"
+                src=""
+                alt="รูปสินค้า">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ═══════════════════════════════════════
+         JAVASCRIPT
+    ═══════════════════════════════════════ -->
 
     <script>
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.classList.toggle('active');
+
+
+        /* ═══════════════════════════════════════
+           สร้างสินค้า 2-100
+        ═══════════════════════════════════════ */
+
+        const productGrid =
+            document.getElementById("productGrid");
+
+
+        for (
+            let number = 2;
+            number <= 100;
+            number++
+        ) {
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "product-card";
+
+
+            /* เลือกรูป */
+
+            let image;
+
+            if (number === 2) {
+
+                image = "PES 2.png";
+
             }
+
+            else if (number === 3) {
+
+                image = "PES 3.png";
+
+            }
+
+            else {
+
+                image = "images.jfif";
+
+            }
+
+
+            /* product1.html
+               = รหัสที่ 2
+
+               product2.html
+               = รหัสที่ 3
+
+               ดังนั้นใช้ number - 1
+            */
+
+            const productPage =
+                "product" +
+                (number - 1) +
+                ".html";
+
+
+            card.innerHTML = `
+
+                <div class="card-img-wrap">
+
+                    <img
+                        src="${image}"
+                        alt="สินค้ารหัสที่ ${number}"
+                        class="card-img">
+
+                    <button
+                        class="zoom-btn"
+                        onclick="openImageZoom('${image}')">
+
+                        🔍
+
+                    </button>
+
+                </div>
+
+
+                <div class="card-code">
+
+                    รหัสที่ ${number}
+
+                </div>
+
+
+                <div class="card-price">
+
+                    255
+                    <span class="currency">
+                        บาท
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="${productPage}"
+                    class="card-btn">
+
+                    ดูข้อมูลไอดี
+
+                </a>
+
+            `;
+
+
+            productGrid.appendChild(card);
+
         }
+
+
+
+        /* ═══════════════════════════════════════
+           Modal เดิม
+        ═══════════════════════════════════════ */
+
+        function toggleModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (modal) {
+
+                modal.classList.toggle(
+                    "active"
+                );
+
+            }
+
+        }
+
+
+
+        /* ═══════════════════════════════════════
+           เปิดรูปใหญ่
+        ═══════════════════════════════════════ */
+
+        function openImageZoom(imageSrc) {
+
+            const modal =
+                document.getElementById(
+                    "imageZoomModal"
+                );
+
+            const image =
+                document.getElementById(
+                    "zoomImage"
+                );
+
+
+            image.src = imageSrc;
+
+
+            modal.classList.add(
+                "active"
+            );
+
+        }
+
+
+
+        /* ═══════════════════════════════════════
+           ปิดรูปใหญ่
+        ═══════════════════════════════════════ */
+
+        function closeImageZoom() {
+
+            const modal =
+                document.getElementById(
+                    "imageZoomModal"
+                );
+
+            modal.classList.remove(
+                "active"
+            );
+
+        }
+
+
+
+        /* ═══════════════════════════════════════
+           กด ESC ปิด
+        ═══════════════════════════════════════ */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeImageZoom();
+
+                }
+
+            }
+        );
+
+
+
+        /* ═══════════════════════════════════════
+           ระบบโฆษณา
+        ═══════════════════════════════════════ */
 
         function startAdSlider(containerId) {
-            const container = document.getElementById(containerId);
+
+            const container =
+                document.getElementById(
+                    containerId
+                );
+
             if (!container) return;
-            const slides = container.querySelectorAll('.ad-slide');
+
+
+            const slides =
+                container.querySelectorAll(
+                    ".ad-slide"
+                );
+
+
             let currentIndex = 0;
 
-            setInterval(() => {
-                slides[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % slides.length;
-                slides[currentIndex].classList.add('active');
-            }, 6500);
+
+            setInterval(
+                () => {
+
+                    slides[
+                        currentIndex
+                    ].classList.remove(
+                        "active"
+                    );
+
+
+                    currentIndex =
+                        (
+                            currentIndex + 1
+                        ) %
+                        slides.length;
+
+
+                    slides[
+                        currentIndex
+                    ].classList.add(
+                        "active"
+                    );
+
+                },
+
+                6500
+            );
+
         }
 
-        startAdSlider('left-ad-slider');
-        startAdSlider('right-ad-slider');
+
+        startAdSlider(
+            "left-ad-slider"
+        );
+
+
+        startAdSlider(
+            "right-ad-slider"
+        );
+
+
     </script>
+
 </body>
 </html>
