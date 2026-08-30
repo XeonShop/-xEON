@@ -936,61 +936,70 @@
 
             background:
                 var(--card-bg);
+<div class="modal-overlay" id="promo-info">
 
-            border:
-                1px solid
-                var(--neon-cyan);
+    <div class="modal-box">
 
-            border-radius: 12px;
+        <!-- ❌ ปุ่มปิด -->
+        <button
+            class="close-btn"
+            onclick="toggleModal('promo-info')">
+            ✕
+        </button>
 
-            width: 90%;
+        <!-- หัวข้อ -->
+        <h3 class="modal-title">
+            ช่องทางติดต่อ XEON
+        </h3>
 
-            max-width: 500px;
-
-            padding: 25px;
-
-            position: relative;
-
-            box-shadow:
-                0 0 30px
-                rgba(0, 240, 255, 0.2);
-        }
-
-        .modal-title {
-
-            font-family:
-                'Orbitron', sans-serif;
-
-            color:
-                var(--neon-cyan);
-
-            font-size: 1.4rem;
-
-            margin-bottom: 15px;
-
-            text-align: center;
-        }
-
-        .close-btn {
-
-            position: absolute;
-
-            top: 15px;
-
-            right: 15px;
-
-            background: none;
-
-            border: none;
-
-            color: #aaa;
-
-            font-size: 1.2rem;
-
-            cursor: pointer;
-        }
+        <p style="
+            text-align:center;
+            color:#ccc;
+            margin-bottom:20px;
+        ">
+            สามารถติดต่อหรือกดติดตามร้านได้ที่ด้านล่าง
+        </p>
 
 
+        <!-- 🟢 LINE -->
+        <a
+            href="https://line.me/ti/p/kdHa9GzC-B"
+            target="_blank"
+            class="card-btn"
+            style="
+                display:block;
+                width:100%;
+                margin-bottom:12px;
+                text-align:center;
+                border-color:#00ff66;
+                color:#00ff66;
+                box-sizing:border-box;
+            "
+        >
+            🟢 ติดต่อทาง LINE
+        </a>
+
+
+        <!-- 🟣 INSTAGRAM -->
+        <a
+            href="https://www.instagram.com/xeon_eria?igsi=MTdhbjQyZHM2OGJscw=="
+            target="_blank"
+            class="card-btn"
+            style="
+                display:block;
+                width:100%;
+                text-align:center;
+                border-color:#ff00e5;
+                color:#ff00e5;
+                box-sizing:border-box;
+            "
+        >
+            📷 Instagram : @xeon_eria
+        </a>
+
+    </div>
+
+</div>
         /* ═══════════════════════════════════════
            หน้าต่างซูมรูป
         ═══════════════════════════════════════ */
