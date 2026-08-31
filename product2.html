@@ -342,21 +342,18 @@
 
                 <div class="price-badge">
                     <div class="price-title">ราคาเพียง</div>
-                    <div class="price-amount">325 ฿</div>
+                    <div class="price-amount">295 ฿</div>
                 </div>
 
                 <div class="guarantee-box">
-                    <div class="guarantee-item">
-                        <span class="icon">⚡</span>
-                        <span>สถานะ: <strong>พร้อมจัดส่ง</strong></span>
-                    </div>
+                    
                     <div class="guarantee-item">
                         <span class="icon">🛡️</span>
-                        <span>รับประกันไอดีสะดวดปลอดภัย 100%</span>
+                        <span> ไทยแท้ 100%</span>
                     </div>
                     <div class="guarantee-item">
                         <span class="icon">📩</span>
-                        <span>สั่งซื้อแล้วส่งสลิปผ่านทางเพจได้เลย</span>
+                        <span>สั่งซื้อจากช่องทางการติดต่อ ig Facebook Line</span>
                     </div>
                 </div>
             </div>
@@ -367,25 +364,18 @@
                 <div class="info-list">
                     <div class="info-item">
                         <span class="label">รหัสสินค้า :</span>
-                        <span class="val">??</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">เลเวล :</span>
-                        <span class="val">???</span>
-                    </div>
+                        <span class="val">PES 3</span>
+                     </div>  
+                    <div
                     <div class="info-item">
                         <span class="label">ทอง :</span>
-                        <span class="val">4600</span>
+                        <span class="val">4560</span>
                     </div>
 
                     <div class="info-item full-detail">
-                        <span class="label">🎮 รายละเอียดตัวละคร & Game Pass :</span>
-                        <span class="val">
-- Game Pass: 11 ชิ้น (ครบเซ็ต)
-- ตัวละคร: ไม่มี- ไอดีสะอาด
-- ระบบ AD
-- ล็อก 10
-                        </span>
+                        <span class="label">🎮 รายละเอียดเกมเปส :</span>
+                        <span class="val">- ไอดีสะอาด
+              </span>
                     </div>
                 </div>
             </div>
@@ -393,14 +383,59 @@
         </div>
 
         <div class="action-section">
-            <a href="https://www.facebook.com/profile.php?id=61577582814625" target="_blank" class="buy-link">
-                <button>🛒 สั่งซื้อไอดีนี้</button>
-            </a>
+            <button class="main-buy-btn" id="openModalBtn">
+                🛒 สั่งซื้อไอดีนี้
+            </button>
         </div>
 
     </div>
 
 </div>
+
+<div class="modal-overlay" id="contactModal">
+    <div class="modal-card">
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+        <h2>เลือกช่องทางติดต่อสั่งซื้อ</h2>
+        <p>กรุณาเลือกระบบที่คุณต้องการใช้ติดต่อร้านค้า</p>
+        
+        <div class="contact-links">
+            <a href="https://www.facebook.com/profile.php?id=61577582814625" target="_blank" class="contact-btn facebook">
+                <span>Facebook Page</span>
+            </a>
+
+            <a href="https://line.me/ti/p/kdHa9GzC-B"_blank" class="contact-btn line">
+                <span>LINE Official / Account</span>
+            </a>
+
+            <a href="https://www.instagram.com/xeon_eria?igsi=MTdhbjQyZHM2OGJscw%3D%3D" target="_blank" class="contact-btn instagram">
+                <span>Instagram</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('contactModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    // เปิด Modal
+    openBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+    });
+
+    // ปิด Modal เมื่อกดปุ่ม X
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    // ปิด Modal เมื่อกดพื้นที่ว่างด้านนอก
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+</script>
 
 </body>
 </html>
