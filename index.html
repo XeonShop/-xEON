@@ -1896,19 +1896,28 @@ else {
     (number - 1) +
     ".html";
 
-const prices = {
-    2: 25,
-    3: 30,
-    4: 35,
-    5: 40,
-    6: 50,
-    7: 55,
-    8: 60,
-    9: 70,
-    10: 80
-};
 
-const price = prices[number] || 25;
+let price;
+
+if (number === 2) {
+    price = 25;
+}
+else if (number === 3) {
+    price = 30;
+}
+else if (number === 4) {
+    price = 35;
+}
+else if (number === 5) {
+    price = 40;
+}
+else if (number === 6) {
+    price = 50;
+}
+else {
+    price = 25;
+}
+
 
 card.innerHTML = `
 
