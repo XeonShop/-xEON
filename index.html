@@ -1890,65 +1890,63 @@ else {
                ดังนั้นใช้ number - 1
             */
 
-            const productPage =
+           const productPage =
     "product" +
     (number - 1) +
     ".html";
 
 const prices = {
-    | รหัส       |   ราคา |
-| ---------- | -----: |
-| รหัสที่ 2  | 25 บาท |
-| รหัสที่ 3  | 30 บาท |
-| รหัสที่ 4  | 35 บาท |
-| รหัสที่ 5  | 40 บาท |
-| รหัสที่ 6  | 50 บาท |
-| รหัสที่ 7  | 55 บาท |
-| รหัสที่ 8  | 60 บาท |
-| รหัสที่ 9  | 70 บาท |
-| รหัสที่ 10 | 80 บาท |
-
+    2: 25,
+    3: 30,
+    4: 35,
+    5: 40,
+    6: 50,
+    7: 55,
+    8: 60,
+    9: 70,
+    10: 80
 };
 
 const price = prices[number] || 25;
 
+
 card.innerHTML = `
-                <div class="card-img-wrap">
 
-                    <img
-                        src="${image}"
-                        alt="สินค้ารหัสที่ ${number}"
-                        class="card-img">
+    <div class="card-img-wrap">
 
-                    <button
-                        class="zoom-btn"
-                        onclick="openImageZoom('${image}')">
+        <img
+            src="${image}"
+            alt="สินค้ารหัสที่ ${number}"
+            class="card-img">
 
-                        🔍
+        <button
+            class="zoom-btn"
+            onclick="openImageZoom('${image}')">
 
-                    </button>
+            🔍
 
-                </div>
+        </button>
 
+    </div>
 
-                <div class="card-code">
+    <div class="card-code">
 
-                    รหัสที่ ${number}
+        รหัสที่ ${number}
 
-                </div>
+    </div>
 
-<div class="card-price">
-    ${25} <span class="currency">บาท</span>
-</div>
-                <a
-                    href="${productPage}"
-                    class="card-btn">
+    <div class="card-price">
+        ${price} <span class="currency">บาท</span>
+    </div>
 
-                    ดูข้อมูลไอดี
+    <a
+        href="${productPage}"
+        class="card-btn">
 
-                </a>
+        ดูข้อมูลไอดี
 
-            `;
+    </a>
+`;
 
 
             productGrid.appendChild(card);
