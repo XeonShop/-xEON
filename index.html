@@ -1890,10 +1890,26 @@ else {
                ดังนั้นใช้ number - 1
             */
 
-            const productPage =
-                "product" +
-                (number - 1) +
-                ".html";
+            let price;
+
+if (number === 2) {
+    price = 25;
+}
+else if (number === 3) {
+    price = 30;
+}
+else if (number === 4) {
+    price = 35;
+}
+else if (number === 5) {
+    price = 40;
+}
+else if (number === 6) {
+    price = 50;
+}
+else {
+    price = 25;
+}
 
 
             card.innerHTML = `
