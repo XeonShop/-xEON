@@ -1895,28 +1895,22 @@ else {
     (number - 1) +
     ".html";
 
+const prices = {
+    | รหัส       |   ราคา |
+| ---------- | -----: |
+| รหัสที่ 2  | 25 บาท |
+| รหัสที่ 3  | 30 บาท |
+| รหัสที่ 4  | 35 บาท |
+| รหัสที่ 5  | 40 บาท |
+| รหัสที่ 6  | 50 บาท |
+| รหัสที่ 7  | 55 บาท |
+| รหัสที่ 8  | 60 บาท |
+| รหัสที่ 9  | 70 บาท |
+| รหัสที่ 10 | 80 บาท |
 
-let price;
+};
 
-if (number === 2) {
-    price = 25;
-}
-else if (number === 3) {
-    price = 30;
-}
-else if (number === 4) {
-    price = 35;
-}
-else if (number === 5) {
-    price = 40;
-}
-else if (number === 6) {
-    price = 50;
-}
-else {
-    price = 25;
-}
-
+const price = prices[number] || 25;
 
 card.innerHTML = `
                 <div class="card-img-wrap">
