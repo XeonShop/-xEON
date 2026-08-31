@@ -1922,9 +1922,27 @@ else {
 
                 </div>
 
-<div class="card-price">
-    25 <span class="currency">บาท</span>
-</div>
+25 <span class="currency">บาท</span>
+let price;
+
+if (number === 1) {
+    price = 25;
+}
+else if (number === 2) {
+    price = 50;
+}
+else if (number === 3) {
+    price = 75;
+}
+else if (number === 4) {
+    price = 100;
+}
+else if (number === 5) {
+    price = 125;
+}
+else {
+    price = 25;
+}
                 <a
                     href="${productPage}"
                     class="card-btn">
