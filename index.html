@@ -971,6 +971,41 @@
             text-align: center;
         }
 
+        .how-to-content {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .how-to-content ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .how-to-content li {
+            margin-bottom: 8px;
+        }
+
+        .video-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            background: var(--neon-yellow);
+            border: 1px solid var(--neon-yellow);
+            border-radius: 6px;
+            padding: 12px 15px;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 238, 0, 0.35);
+        }
+
+        .video-link:hover {
+            background: #fff;
+            box-shadow: 0 0 25px rgba(255, 238, 0, 0.8);
+            transform: translateY(-2px);
+        }
+
         .close-btn {
 
             position: absolute;
@@ -1438,15 +1473,22 @@
                 วิธีสั่งซื้อสินค้า
             </h3>
 
-            <p
-                style="https://www.youtube.com/watch?v=D_W3DX464kc&t=1s"
-                text-align:center;
-                color:#ccc;
-                ">
+            <div class="how-to-content">
+                <ol>
+                    <li>เลือกสินค้าที่ต้องการสั่งซื้อจากรายการสินค้า</li>
+                    <li>กดปุ่ม <strong>ดูข้อมูลไอดี</strong> ของสินค้านั้น</li>
+                    <li>ตรวจสอบรายละเอียดและราคาสินค้า</li>
+                    <li>ทำตามช่องทางการสั่งซื้อที่ระบุไว้ในหน้าสินค้า</li>
+                </ol>
 
-                
-
-            </p>
+                <a
+                    href="https://www.youtube.com/watch?v=D_W3DX464kc&t=1s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="video-link">
+                    ▶ ดูวิดีโอวิธีสั่งซื้อสินค้า
+                </a>
+            </div>
 
         </div>
 
